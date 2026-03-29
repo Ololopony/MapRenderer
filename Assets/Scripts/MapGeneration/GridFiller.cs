@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using MapLayoutGenerator;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class GridFiller : MonoBehaviour
 {
