@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using MapLayoutGenerator;
-using UnityEngine;
 
-public class LayoutGenerator : MonoBehaviour
+public class LayoutGenerator
 {
     private Layout _layout;
     private LayoutFiller _layoutFiller;
@@ -15,7 +13,7 @@ public class LayoutGenerator : MonoBehaviour
     private string _jsonString = "";
 
 
-    private void Awake()
+    public void InitiateGenerator()
     {
         _jsonString = File.ReadAllText(_jsonFilePath);
         _layout = new Layout(10, 10);
@@ -38,5 +36,17 @@ public class LayoutGenerator : MonoBehaviour
         }
         
         _layoutFiller = new LayoutFiller(_layout, _typesDictionary);
+    }
+
+    public void GenerateLayout()
+    {
+        _layoutFiller.FillLayoutWithEmptyCells();
+        _layoutFiller.AssignNewNeighbourCells();
+        _layoutFiller.AssignNewNeighbourCells();
+    }
+
+    public Layout GetLayout()
+    {
+        return _layout;
     }
 }

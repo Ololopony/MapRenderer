@@ -1,21 +1,21 @@
-using System.Security.Cryptography;
 using MapLayoutGenerator;
 using UnityEngine;
 
+[CreateAssetMenu (fileName = "Edge", menuName = "Edge")]
 public class Edge : ScriptableObject
 {
     [SerializeField]
     private RelativeDirection _direction;
     [SerializeField]
-    private string _name;
+    private EdgeTypes _edgeType;
 
     public RelativeDirection GetDirection()
     {
         return _direction;
     }
 
-    public string GetName()
+    public EdgeTypes GetEnumEdgeType()
     {
-        return _name;
+        return _edgeType;
     }
 }
