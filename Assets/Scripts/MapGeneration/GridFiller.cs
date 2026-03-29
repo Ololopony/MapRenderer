@@ -53,7 +53,7 @@ public class GridFiller : MonoBehaviour
                 {
                     RealCell neighbourCell = _realGrid[neighbour.x, neighbour.y];
 
-                    if (neighbour != null)
+                    if (neighbourCell != null)
                     {
                         RemoveCellsByType(potentialCells, _layout.GetCellByIndex(x, y).GetCellType());
                         switch (i)
@@ -92,15 +92,16 @@ public class GridFiller : MonoBehaviour
                 _realGrid[x, y] = potentialCells[Random.Range(0, potentialCells.Count)];
             }
 
-            GameObject newCell = Instantiate(_realGrid[x, y].GetCellPrefab(), new Vector3(x, y, 0f), Quaternion.identity);
+            GameObject newCell = Instantiate(_realGrid[x, y].GetCellPrefab(), new Vector3(x, 0f, y), Quaternion.identity);
             _toFill.RemoveAt(0);
         }
     }
 
     private void RemoveCellsByEdges(List<RealCell> potentialCells, Edge edge)
     {
-        foreach (RealCell potentialCell in potentialCells)
+        for (int i = 0; i < potentialCells.Count; i++)
         {
+            RealCell potentialCell = potentialCells[i];
             if (!potentialCell.GetOppositeEdge(edge).GetEnumEdgeType().Equals(edge.GetEnumEdgeType()))
             {
                 potentialCells.Remove(potentialCell);
@@ -110,8 +111,9 @@ public class GridFiller : MonoBehaviour
 
     private void RemoveCellsByType(List<RealCell> potentialCells, CellType cellType)
     {
-        foreach (RealCell potentialCell in potentialCells)
+        for (int i = 0; i < potentialCells.Count; i++)
         {
+            RealCell potentialCell = potentialCells[i];
             if (!potentialCell.GetEnumCellType().Equals(cellType.EnumCellType))
             {
                 potentialCells.Remove(potentialCell);

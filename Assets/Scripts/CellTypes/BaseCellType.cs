@@ -6,13 +6,13 @@ public class BaseCellType : CellType
 
     public override bool CellTypeIsCompatable(CellType otherCellType)
     {
-        if (_cellTypeConnectionRules.GetListOfCopatableCellTypes().Contains(otherCellType))
+        foreach (CellTypes cellTypes in _cellTypeConnectionRules.GetListOfCompatableCellTypes())
         {
-            return true;
+            if (cellTypes.Equals(otherCellType.EnumCellType))
+            {
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 }

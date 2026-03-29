@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using MapLayoutGenerator;
 using UnityEngine;
 
+[CreateAssetMenu (fileName = "CellTypeConnectionRules", menuName = "CellType Connection Rules")]
 public class CellTypeConnectionRules : ScriptableObject
 {
     [SerializeField]
-    private List<CellType> _compatableCellTypes;
+    private List<CellTypes> _compatableCellTypes;
 
-    public List<CellType> GetListOfCopatableCellTypes()
+    public List<CellTypes> GetListOfCompatableCellTypes()
     {
         return _compatableCellTypes;
     }

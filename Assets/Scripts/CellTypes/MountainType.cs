@@ -1,7 +1,8 @@
 public class MountainType : BaseCellType
 {
-    public MountainType()
+    public MountainType(CellTypeConnectionRules cellTypeConnectionRules)
     {
+        _cellTypeConnectionRules = cellTypeConnectionRules;
         EnumCellType = CellTypes.Forest;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using MapLayoutGenerator;
+using UnityEngine;
 
 public class LayoutGenerator
 {
@@ -16,21 +17,25 @@ public class LayoutGenerator
     public void InitiateGenerator()
     {
         _jsonString = File.ReadAllText(_jsonFilePath);
-        _layout = new Layout(10, 10);
+        _layout = new Layout(3, 3);
         _typesStringDictionary = _jSONToCellTypeDictionaryDeserialiser.DeserialiseJSONRulesToCellTypeDictionary(_jsonString);
+        CellTypeConnectionRules cellTypeConnectionRules;
 
         foreach (var type in _typesStringDictionary)
         {
             switch (type.Key)
             {
                 case "mountains":
-                    _typesDictionary.Add(new MountainType(), type.Value);
+                    cellTypeConnectionRules = Resources.Load<CellTypeConnectionRules>("ScriptableObjects/CellTypeConnectionRules/MountainConnectionRules");
+                    _typesDictionary.Add(new MountainType(cellTypeConnectionRules), type.Value);
                     continue;
                 case "forests":
-                    _typesDictionary.Add(new ForestType(), type.Value);
+                    cellTypeConnectionRules = Resources.Load<CellTypeConnectionRules>("ScriptableObjects/CellTypeConnectionRules/ForestConnectionRules");
+                    _typesDictionary.Add(new ForestType(cellTypeConnectionRules), type.Value);
                     continue;
                 case "lakes":
-                    _typesDictionary.Add(new LakeType(), type.Value);
+                    cellTypeConnectionRules = Resources.Load<CellTypeConnectionRules>("ScriptableObjects/CellTypeConnectionRules/LakeConnectionRules");
+                    _typesDictionary.Add(new LakeType(cellTypeConnectionRules), type.Value);
                     continue;
             }
         }
