@@ -42,7 +42,7 @@ public class LayoutGenerator
     {
         _layoutFiller.FillLayoutWithEmptyCells();
         _layoutFiller.AssignNewNeighbourCells();
-        _layoutFiller.AssignNewNeighbourCells();
+        _layoutFiller.AssignTypesToCell();
     }
 
     public Layout GetLayout()

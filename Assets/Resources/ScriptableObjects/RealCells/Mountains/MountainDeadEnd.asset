@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1332e673452b1bb41a6f6126416ce081, type: 3}
-  m_Name: ForestyCrossRoad
+  m_Name: MountainDeadEnd
   m_EditorClassIdentifier: Assembly-CSharp::RealCell
   _edges:
   - {fileID: 11400000, guid: 3042aa00f6b7d8946974257e62c73fd5, type: 2}
-  - {fileID: 11400000, guid: 33f0b9df01fdad64aa4cd3941f8b842c, type: 2}
-  - {fileID: 11400000, guid: 0953f7d967e5190449bd104f48091230, type: 2}
-  - {fileID: 11400000, guid: fc5df53b99327e64ca245bee2828f20a, type: 2}
-  _cellPrefab: {fileID: 8798614679500087749, guid: bbc11046a811eca41bfcbb3702a8a77c, type: 3}
-  _enumCellType: 0
+  - {fileID: 11400000, guid: ffe3e5552c9d148468bba42a07c492ef, type: 2}
+  - {fileID: 11400000, guid: c23a0a3c4e7b7f3458bd08334921e625, type: 2}
+  - {fileID: 11400000, guid: 0bf78a1bb62bbab47bc23625236c1fee, type: 2}
+  _cellPrefab: {fileID: 6688812231201943636, guid: 0c73e276c71256849b9747d2be309a6f, type: 3}
+  _enumCellType: 2

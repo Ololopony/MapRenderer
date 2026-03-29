@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1332e673452b1bb41a6f6126416ce081, type: 3}
-  m_Name: ForestDownToLake
+  m_Name: LakeCrossRoad
   m_EditorClassIdentifier: Assembly-CSharp::RealCell
   _edges:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _cellPrefab: {fileID: 0}
+  - {fileID: 11400000, guid: 3042aa00f6b7d8946974257e62c73fd5, type: 2}
+  - {fileID: 11400000, guid: 33f0b9df01fdad64aa4cd3941f8b842c, type: 2}
+  - {fileID: 11400000, guid: 0953f7d967e5190449bd104f48091230, type: 2}
+  - {fileID: 11400000, guid: fc5df53b99327e64ca245bee2828f20a, type: 2}
+  _cellPrefab: {fileID: 3709394363173634912, guid: 72e2ed7b4acca064f96ca41866dee22a, type: 3}
   _enumCellType: 0

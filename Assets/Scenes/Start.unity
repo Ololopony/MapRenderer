@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 19550510}
+  - component: {fileID: 19550511}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -150,6 +151,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &19550511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19550508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17031a24ca85c7f4884cde5cc7e24fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridFiller
+  _allPossibleCells:
+  - {fileID: 11400000, guid: 4b698815c6ad0a54cb9ed5049f9eebef, type: 2}
+  - {fileID: 11400000, guid: 6c51f223af3355c4192cb51b84456677, type: 2}
+  - {fileID: 11400000, guid: 8daaac6899105ea41b1177bef30c1cd3, type: 2}
+  - {fileID: 11400000, guid: 2bddb0b2cb5988949a8b80c76a173acd, type: 2}
+  - {fileID: 11400000, guid: f917053dc2b78e4409588d68f42d9b2e, type: 2}
+  - {fileID: 11400000, guid: f3450ec3409053a48a8b99f987e80516, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
