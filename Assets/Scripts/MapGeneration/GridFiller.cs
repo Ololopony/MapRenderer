@@ -5,10 +5,12 @@ using UnityEngine.AI;
 
 public class GridFiller : MonoBehaviour
 {
+    [SerializeField]
+    private List<RealCell> _allPossibleCells = new List<RealCell>();
+
     private LayoutGenerator _layoutGenerator = new LayoutGenerator();
     private Layout _layout;
     private RealCell[,] _realGrid;
-    private List<RealCell> _allPossibleCells = new List<RealCell>();
     private List<Vector2Int> _toFill = new List<Vector2Int>();
     private Vector2Int[] _offsets = new Vector2Int[]
     {

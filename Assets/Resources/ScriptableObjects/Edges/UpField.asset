@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1332e673452b1bb41a6f6126416ce081, type: 3}
-  m_Name: ForestyCrossRoad
-  m_EditorClassIdentifier: Assembly-CSharp::RealCell
-  _edges: []
-  _cellPrefab: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 5ce0ee7939924c74792382022c83c3c9, type: 3}
+  m_Name: UpField
+  m_EditorClassIdentifier: Assembly-CSharp::Edge
+  _direction: 0
+  _edgeType: 1
