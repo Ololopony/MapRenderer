@@ -40,14 +40,14 @@ public class RealCell : ScriptableObject
             case RelativeDirection.Left:
                 return GetEdgeByRelativeDirection(RelativeDirection.Right);
         }
-        return GetEdgeByRelativeDirection(RelativeDirection.Up);
+        return otherEdge;
     }
 
     public Edge GetEdgeByRelativeDirection(RelativeDirection relativeDirection)
     {
         foreach (Edge edge in _edges)
         {
-            if (edge.GetDirection() == relativeDirection)
+            if (edge.GetDirection().Equals(relativeDirection))
             {
                 return edge;
             }

@@ -17,7 +17,7 @@ public class LayoutGenerator
     public void InitiateGenerator()
     {
         _jsonString = File.ReadAllText(_jsonFilePath);
-        _layout = new Layout(3, 3);
+        _layout = new Layout(10, 10);
         _typesStringDictionary = _jSONToCellTypeDictionaryDeserialiser.DeserialiseJSONRulesToCellTypeDictionary(_jsonString);
         CellTypeConnectionRules cellTypeConnectionRules;
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using MapLayoutGenerator;
 using UnityEngine;
@@ -13,10 +14,10 @@ public class GridFiller : MonoBehaviour
     private List<Vector2Int> _toFill = new List<Vector2Int>();
     private Vector2Int[] _offsets = new Vector2Int[]
     {
-        new Vector2Int(0, 1),
-        new Vector2Int(0, -1),
-        new Vector2Int(1, 0),
-        new Vector2Int(-1, 0)
+        new Vector2Int(0, 1),   //Up
+        new Vector2Int(0, -1),  //Down
+        new Vector2Int(-1, 0),   //Right
+        new Vector2Int(1, 0)   //Left
     };
 
     private void Awake()
@@ -30,10 +31,10 @@ public class GridFiller : MonoBehaviour
     {
         _realGrid = new RealCell[_layout.GetMapWidth(), _layout.GetMapHight()];
 
-        FillMap();
+        StartCoroutine(FillMap());
     }
 
-    private void FillMap()
+    private IEnumerator FillMap()
     {
         _toFill.Clear();
         _toFill.Add(new Vector2Int(_layout.GetMapWidth() / 2, _layout.GetMapHight() / 2));
@@ -55,20 +56,36 @@ public class GridFiller : MonoBehaviour
 
                     if (neighbourCell != null)
                     {
-                        RemoveCellsByType(potentialCells, _layout.GetCellByIndex(x, y).GetCellType());
+                        //RemoveCellsByType(potentialCells, _layout.GetCellByIndex(x, y).GetCellType());
                         switch (i)
                         {
                             case 0:
                                 RemoveCellsByEdges(potentialCells, neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Down));
+                                Debug.Log("Сосед сверху");
+                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Down).GetDirection());
+                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Down).GetEnumEdgeType());
+                                Debug.Log("____________________________________");
                                 break;
                             case 1:
                                 RemoveCellsByEdges(potentialCells, neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Up));
+                                Debug.Log("Сосед снизу");
+                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Up).GetDirection());
+                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Up).GetEnumEdgeType());
+                                Debug.Log("____________________________________");
                                 break;
                             case 2:
                                 RemoveCellsByEdges(potentialCells, neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Left));
+                                Debug.Log("Сосед справа");
+                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Left).GetDirection());
+                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Left).GetEnumEdgeType());
+                                Debug.Log("____________________________________");
                                 break;
                             case 3:
                                 RemoveCellsByEdges(potentialCells, neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Right));
+                                Debug.Log("Сосед слева");
+                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Right).GetDirection());
+                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Right).GetEnumEdgeType());
+                                Debug.Log("____________________________________");
                                 break;
                         }
                     }
@@ -92,19 +109,38 @@ public class GridFiller : MonoBehaviour
                 _realGrid[x, y] = potentialCells[Random.Range(0, potentialCells.Count)];
             }
 
-            GameObject newCell = Instantiate(_realGrid[x, y].GetCellPrefab(), new Vector3(x, 0f, y), Quaternion.identity);
+            Instantiate(_realGrid[x, y].GetCellPrefab(), new Vector3(y * 3, 0f, x * 3), Quaternion.identity);
+            foreach (Edge edge in _realGrid[x, y].GetEdges())
+            {
+                Debug.Log("Края клетки:");
+                Debug.Log(edge.GetDirection());
+                Debug.Log(edge.GetEnumEdgeType());
+            }
+            Debug.Log("_________________________");
+            yield return new WaitForSecondsRealtime(2);
             _toFill.RemoveAt(0);
         }
     }
 
     private void RemoveCellsByEdges(List<RealCell> potentialCells, Edge edge)
     {
-        for (int i = 0; i < potentialCells.Count; i++)
+        for (int i = potentialCells.Count - 1; i >= 0; i--)
         {
             RealCell potentialCell = potentialCells[i];
             if (!potentialCell.GetOppositeEdge(edge).GetEnumEdgeType().Equals(edge.GetEnumEdgeType()))
             {
+                // Debug.Log("--------------------------------------------------------------");
+                // Debug.Log(potentialCell.GetOppositeEdge(edge).GetEnumEdgeType().ToString());
+                // Debug.Log(edge.GetEnumEdgeType().ToString());
+                // Debug.Log("--------------------------------------------------------------");
                 potentialCells.Remove(potentialCell);
+            }
+            else
+            {
+                // Debug.Log("--------------------------------------------------------------");
+                // Debug.Log(potentialCell.GetOppositeEdge(edge).GetEnumEdgeType().ToString());
+                // Debug.Log(edge.GetEnumEdgeType().ToString());
+                // Debug.Log("--------------------------------------------------------------");
             }
         }
     }

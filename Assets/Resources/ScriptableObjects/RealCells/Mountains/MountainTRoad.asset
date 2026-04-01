@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MountainTRoad
   m_EditorClassIdentifier: Assembly-CSharp::RealCell
   _edges:
-  - {fileID: 11400000, guid: 3042aa00f6b7d8946974257e62c73fd5, type: 2}
-  - {fileID: 11400000, guid: 33f0b9df01fdad64aa4cd3941f8b842c, type: 2}
-  - {fileID: 11400000, guid: c23a0a3c4e7b7f3458bd08334921e625, type: 2}
   - {fileID: 11400000, guid: fc5df53b99327e64ca245bee2828f20a, type: 2}
+  - {fileID: 11400000, guid: d4d35b937a26ea344b5105edf1d2c13f, type: 2}
+  - {fileID: 11400000, guid: ffe3e5552c9d148468bba42a07c492ef, type: 2}
+  - {fileID: 11400000, guid: 3042aa00f6b7d8946974257e62c73fd5, type: 2}
   _cellPrefab: {fileID: 1287441395887205106, guid: 073c5579ab275764390d67505be955a8, type: 3}
   _enumCellType: 0

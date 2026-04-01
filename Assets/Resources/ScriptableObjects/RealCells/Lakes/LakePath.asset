@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: LakePath
   m_EditorClassIdentifier: Assembly-CSharp::RealCell
   _edges:
+  - {fileID: 11400000, guid: fc5df53b99327e64ca245bee2828f20a, type: 2}
   - {fileID: 11400000, guid: 3042aa00f6b7d8946974257e62c73fd5, type: 2}
   - {fileID: 11400000, guid: ffe3e5552c9d148468bba42a07c492ef, type: 2}
   - {fileID: 11400000, guid: c23a0a3c4e7b7f3458bd08334921e625, type: 2}
-  - {fileID: 11400000, guid: fc5df53b99327e64ca245bee2828f20a, type: 2}
   _cellPrefab: {fileID: 944045688337882769, guid: b3dc298a4f349c344beddf3c44a0267a, type: 3}
   _enumCellType: 0
