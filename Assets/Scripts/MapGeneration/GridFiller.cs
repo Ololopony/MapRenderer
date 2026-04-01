@@ -47,12 +47,6 @@ public class GridFiller : MonoBehaviour
             List<RealCell> potentialCells = new List<RealCell>(_allPossibleCells);
 
             RemoveCellsByType(potentialCells, _layout.GetCellByIndex(x, y).GetCellType());
-            // Debug.Log(_layout.GetCellByIndex(x, y).GetCellType().ToString());
-            // foreach (RealCell cell in potentialCells)
-            // {
-            //     Debug.Log(cell.GetEnumCellType());
-            // }
-            // Debug.Log("__________________");
 
             for (int i = 0; i < _offsets.Length; i++)
             {
@@ -114,18 +108,7 @@ public class GridFiller : MonoBehaviour
             RealCell potentialCell = potentialCells[i];
             if (!potentialCell.GetOppositeEdge(edge).GetEnumEdgeType().Equals(edge.GetEnumEdgeType()))
             {
-                // Debug.Log("--------------------------------------------------------------");
-                // Debug.Log(potentialCell.GetOppositeEdge(edge).GetEnumEdgeType().ToString());
-                // Debug.Log(edge.GetEnumEdgeType().ToString());
-                // Debug.Log("--------------------------------------------------------------");
                 potentialCells.Remove(potentialCell);
-            }
-            else
-            {
-                // Debug.Log("--------------------------------------------------------------");
-                // Debug.Log(potentialCell.GetOppositeEdge(edge).GetEnumEdgeType().ToString());
-                // Debug.Log(edge.GetEnumEdgeType().ToString());
-                // Debug.Log("--------------------------------------------------------------");
             }
         }
     }
@@ -138,16 +121,7 @@ public class GridFiller : MonoBehaviour
             RealCell potentialCell = potentialCells[i];
             if (!potentialCell.GetEnumCellType().Equals(cellType.EnumCellType))
             {
-                // Debug.Log(cellType.EnumCellType.ToString());
-                // Debug.Log(potentialCell.GetEnumCellType().ToString());
-                // Debug.Log("________________________________________");
                 potentialCells.Remove(potentialCell);
-            }
-            else
-            {
-                // Debug.Log(cellType.EnumCellType.ToString());
-                // Debug.Log(potentialCell.GetEnumCellType().ToString());
-                // Debug.Log("________________________________________");
             }
         }
     }
