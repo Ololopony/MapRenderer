@@ -18,4 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0953f7d967e5190449bd104f48091230, type: 2}
   - {fileID: 11400000, guid: fc5df53b99327e64ca245bee2828f20a, type: 2}
   _cellPrefab: {fileID: 3709394363173634912, guid: 72e2ed7b4acca064f96ca41866dee22a, type: 3}
-  _enumCellType: 0
+  _enumCellType: 1

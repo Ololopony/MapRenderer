@@ -46,6 +46,14 @@ public class GridFiller : MonoBehaviour
 
             List<RealCell> potentialCells = new List<RealCell>(_allPossibleCells);
 
+            RemoveCellsByType(potentialCells, _layout.GetCellByIndex(x, y).GetCellType());
+            // Debug.Log(_layout.GetCellByIndex(x, y).GetCellType().ToString());
+            // foreach (RealCell cell in potentialCells)
+            // {
+            //     Debug.Log(cell.GetEnumCellType());
+            // }
+            // Debug.Log("__________________");
+
             for (int i = 0; i < _offsets.Length; i++)
             {
                 Vector2Int neighbour = new Vector2Int(x + _offsets[i].x, y + _offsets[i].y);
@@ -56,36 +64,19 @@ public class GridFiller : MonoBehaviour
 
                     if (neighbourCell != null)
                     {
-                        //RemoveCellsByType(potentialCells, _layout.GetCellByIndex(x, y).GetCellType());
                         switch (i)
                         {
                             case 0:
                                 RemoveCellsByEdges(potentialCells, neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Down));
-                                Debug.Log("Сосед сверху");
-                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Down).GetDirection());
-                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Down).GetEnumEdgeType());
-                                Debug.Log("____________________________________");
                                 break;
                             case 1:
                                 RemoveCellsByEdges(potentialCells, neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Up));
-                                Debug.Log("Сосед снизу");
-                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Up).GetDirection());
-                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Up).GetEnumEdgeType());
-                                Debug.Log("____________________________________");
                                 break;
                             case 2:
                                 RemoveCellsByEdges(potentialCells, neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Left));
-                                Debug.Log("Сосед справа");
-                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Left).GetDirection());
-                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Left).GetEnumEdgeType());
-                                Debug.Log("____________________________________");
                                 break;
                             case 3:
                                 RemoveCellsByEdges(potentialCells, neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Right));
-                                Debug.Log("Сосед слева");
-                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Right).GetDirection());
-                                Debug.Log(neighbourCell.GetEdgeByRelativeDirection(RelativeDirection.Right).GetEnumEdgeType());
-                                Debug.Log("____________________________________");
                                 break;
                         }
                     }
@@ -110,14 +101,8 @@ public class GridFiller : MonoBehaviour
             }
 
             Instantiate(_realGrid[x, y].GetCellPrefab(), new Vector3(y * 3, 0f, x * 3), Quaternion.identity);
-            foreach (Edge edge in _realGrid[x, y].GetEdges())
-            {
-                Debug.Log("Края клетки:");
-                Debug.Log(edge.GetDirection());
-                Debug.Log(edge.GetEnumEdgeType());
-            }
-            Debug.Log("_________________________");
-            yield return new WaitForSecondsRealtime(2);
+            //yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForEndOfFrame();
             _toFill.RemoveAt(0);
         }
     }
@@ -147,12 +132,22 @@ public class GridFiller : MonoBehaviour
 
     private void RemoveCellsByType(List<RealCell> potentialCells, CellType cellType)
     {
-        for (int i = 0; i < potentialCells.Count; i++)
+        Debug.Log(cellType.ToString());
+        for (int i = potentialCells.Count - 1; i >= 0; i--)
         {
             RealCell potentialCell = potentialCells[i];
             if (!potentialCell.GetEnumCellType().Equals(cellType.EnumCellType))
             {
+                // Debug.Log(cellType.EnumCellType.ToString());
+                // Debug.Log(potentialCell.GetEnumCellType().ToString());
+                // Debug.Log("________________________________________");
                 potentialCells.Remove(potentialCell);
+            }
+            else
+            {
+                // Debug.Log(cellType.EnumCellType.ToString());
+                // Debug.Log(potentialCell.GetEnumCellType().ToString());
+                // Debug.Log("________________________________________");
             }
         }
     }
