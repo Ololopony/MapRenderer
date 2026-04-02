@@ -27,7 +27,7 @@ public class GridFiller : MonoBehaviour
         _layout = _layoutGenerator.GetLayout();
     }
 
-    private void Start()
+    public void StartFiller()
     {
         _realGrid = new RealCell[_layout.GetMapWidth(), _layout.GetMapHight()];
 
