@@ -4,15 +4,15 @@ using UnityEngine.UI;
 public class InputFiledHandler : MonoBehaviour
 {
     [SerializeField]
-    private SpawnButton _spawnButton;
+    private GenerateLayoutButton _generateLayoutButton;
 
     void Awake()
     {
-        _spawnButton.SetInputField(gameObject);
+        _generateLayoutButton.SetInputField(gameObject);
     }
 
     public void SetTextOnEndEdit(string text)
     {
-        _spawnButton.SetInputFieldText(text);
+        _generateLayoutButton.SetInputFieldText(text);
     }
 }

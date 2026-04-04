@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using MapLayoutGenerator;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class LayoutGenerator
 {
@@ -12,11 +15,36 @@ public class LayoutGenerator
     private Dictionary<CellType, int> _typesDictionary = new Dictionary<CellType, int>();
     private string _jsonFilePath = "E:/MapRendering/MapRenderer/Assets/Scripts/JSON/generateSettings.json"; 
     private string _jsonString = "";
+    private GeminiApiConnector _geminiApiConnector = new GeminiApiConnector();
+    private bool _connectetToAiApi;
 
-
-    public void InitiateGenerator()
+    private async Task ConnectToGemini()
     {
-        _jsonString = File.ReadAllText(_jsonFilePath);
+        await _geminiApiConnector.ConnectToAi();
+        _connectetToAiApi = true;
+    }
+
+    private async Task<string> GetJsonFromGemini(string prompt)
+    {
+        return await _geminiApiConnector.GetResponce(prompt);
+    }
+
+    public async Task InitiateGenerator(string prompt)
+    {
+        await ConnectToGemini();
+        if (_connectetToAiApi)
+        {
+            _jsonString = await GetJsonFromGemini(prompt);
+
+            if (_jsonString.Equals(string.Empty))
+            {
+                _jsonString = File.ReadAllText(_jsonFilePath);
+            }
+        }
+        else
+        {
+            _jsonString = File.ReadAllText(_jsonFilePath);
+        }
         _layout = new Layout(3, 3);
         _typesStringDictionary = _jSONToCellTypeDictionaryDeserialiser.DeserialiseJSONRulesToCellTypeDictionary(_jsonString);
         CellTypeConnectionRules cellTypeConnectionRules;

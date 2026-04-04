@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MapLayoutGenerator;
 using UnityEngine;
 
@@ -20,9 +21,9 @@ public class GridFiller : MonoBehaviour
         new Vector2Int(1, 0)   //Left
     };
 
-    private void Awake()
+    public async Task StartLayoutGenerator(string prompt)
     {
-        _layoutGenerator.InitiateGenerator();
+        await _layoutGenerator.InitiateGenerator(prompt);
         _layoutGenerator.GenerateLayout();
         _layout = _layoutGenerator.GetLayout();
     }
