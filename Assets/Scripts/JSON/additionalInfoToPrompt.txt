@@ -1,0 +1,1 @@
+generate parameters from previous description format output in a following JSON format: {"mountains":x, "lakes":y, "forests":z} without other parameters and additional text

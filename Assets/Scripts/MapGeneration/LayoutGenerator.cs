@@ -15,6 +15,8 @@ public class LayoutGenerator
     private Dictionary<CellType, int> _typesDictionary = new Dictionary<CellType, int>();
     private string _jsonFilePath = "E:/MapRendering/MapRenderer/Assets/Scripts/JSON/generateSettings.json"; 
     private string _jsonString = "";
+    private string _additionalInfoToPromptFilePath = "E:/MapRendering/MapRenderer/Assets/Scripts/JSON/additionalInfoToPrompt.txt";
+    private string _additionalInfoToPrompt = "";
     private GeminiApiConnector _geminiApiConnector = new GeminiApiConnector();
     private bool _connectetToAiApi;
 
@@ -45,6 +47,8 @@ public class LayoutGenerator
         {
             _jsonString = File.ReadAllText(_jsonFilePath);
         }
+        _additionalInfoToPrompt = File.ReadAllText(_additionalInfoToPromptFilePath);
+        _jsonFilePath += " " + _additionalInfoToPrompt;
         _layout = new Layout(3, 3);
         _typesStringDictionary = _jSONToCellTypeDictionaryDeserialiser.DeserialiseJSONRulesToCellTypeDictionary(_jsonString);
         CellTypeConnectionRules cellTypeConnectionRules;
