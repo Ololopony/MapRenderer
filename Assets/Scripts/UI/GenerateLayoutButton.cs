@@ -18,13 +18,10 @@ public class GenerateLayoutButton : MonoBehaviour
 
     private async Task Generate()
     {
-        if (!_inputFieldText.Equals(string.Empty))
-        {
-            await _gridFiller.StartLayoutGenerator(_inputFieldText);
-            gameObject.SetActive(false);
-            _inputField.SetActive(false);
-            _spawnButton.SetActive(true);
-        }
+        await _gridFiller.StartLayoutGenerator(_inputFieldText);
+        gameObject.SetActive(false);
+        _inputField.SetActive(false);
+        _spawnButton.SetActive(true);
     }
 
     public void SetInputFieldText(string inputFieldtext)

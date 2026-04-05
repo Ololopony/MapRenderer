@@ -18,12 +18,12 @@ public class LayoutGenerator
     private string _additionalInfoToPromptFilePath = "E:/MapRendering/MapRenderer/Assets/Scripts/JSON/additionalInfoToPrompt.txt";
     private string _additionalInfoToPrompt = "";
     private GeminiApiConnector _geminiApiConnector = new GeminiApiConnector();
-    private bool _connectetToAiApi;
+    private bool _connectedToAiApi;
 
     private async Task ConnectToGemini()
     {
         await _geminiApiConnector.ConnectToAi();
-        _connectetToAiApi = true;
+        _connectedToAiApi = true;
     }
 
     private async Task<string> GetJsonFromGemini(string prompt)
@@ -33,12 +33,21 @@ public class LayoutGenerator
 
     public async Task InitiateGenerator(string prompt)
     {
-        await ConnectToGemini();
-        if (_connectetToAiApi)
+        if (!prompt.Equals(string.Empty))
         {
-            _jsonString = await GetJsonFromGemini(prompt);
+            await ConnectToGemini();
+            if (_connectedToAiApi)
+            {
+                _additionalInfoToPrompt = File.ReadAllText(_additionalInfoToPromptFilePath);
 
-            if (_jsonString.Equals(string.Empty))
+                _jsonString = await GetJsonFromGemini(prompt + " " + _additionalInfoToPrompt);
+
+                if (_jsonString.Equals(string.Empty))
+                {
+                    _jsonString = File.ReadAllText(_jsonFilePath);
+                }
+            }
+            else
             {
                 _jsonString = File.ReadAllText(_jsonFilePath);
             }
@@ -47,9 +56,7 @@ public class LayoutGenerator
         {
             _jsonString = File.ReadAllText(_jsonFilePath);
         }
-        _additionalInfoToPrompt = File.ReadAllText(_additionalInfoToPromptFilePath);
-        _jsonFilePath += " " + _additionalInfoToPrompt;
-        _layout = new Layout(3, 3);
+        _layout = new Layout(10, 10);
         _typesStringDictionary = _jSONToCellTypeDictionaryDeserialiser.DeserialiseJSONRulesToCellTypeDictionary(_jsonString);
         CellTypeConnectionRules cellTypeConnectionRules;
 
