@@ -9,6 +9,8 @@ public class GridFiller : MonoBehaviour
     [SerializeField]
     private List<RealCell> _allPossibleCells = new List<RealCell>();
 
+    private List<CellTreasureHolder> _cellTreasureHolders = new List<CellTreasureHolder>();
+    private TreasureInstantiator _treasureInstantiator = new TreasureInstantiator(100);
     private LayoutGenerator _layoutGenerator = new LayoutGenerator();
     private Layout _layout;
     private RealCell[,] _realGrid;
@@ -33,6 +35,7 @@ public class GridFiller : MonoBehaviour
         _realGrid = new RealCell[_layout.GetMapWidth(), _layout.GetMapHight()];
 
         StartCoroutine(FillMap());
+        _treasureInstantiator.SetTreasureForCells(_cellTreasureHolders);
     }
 
     private IEnumerator FillMap()
@@ -95,8 +98,8 @@ public class GridFiller : MonoBehaviour
                 _realGrid[x, y] = potentialCells[Random.Range(0, potentialCells.Count)];
             }
 
-            Instantiate(_realGrid[x, y].GetCellPrefab(), new Vector3(y * 3, 0f, x * 3), Quaternion.identity);
-            //yield return new WaitForSecondsRealtime(1);
+            GameObject cell = Instantiate(_realGrid[x, y].GetCellPrefab(), new Vector3(y * 3, 0f, x * 3), Quaternion.identity);
+            _cellTreasureHolders.Add(cell.GetComponent<CellTreasureHolder>());
             yield return new WaitForEndOfFrame();
             _toFill.RemoveAt(0);
         }

@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 97f751374e6d08c478cd6d37ac9ad24c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2299409371434340176}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 97f751374e6d08c478cd6d37ac9ad24c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6201237999935050649}
   m_SourcePrefab: {fileID: 100100000, guid: 97f751374e6d08c478cd6d37ac9ad24c, type: 3}
 --- !u!1 &944045688337882769 stripped
 GameObject:
@@ -86,3 +89,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 1, z: 3}
   m_Center: {x: -1.5, y: 0, z: -1.5}
+--- !u!114 &-6201237999935050649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944045688337882769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aab129618d5f094fadae57a1f9e8e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CellTreasureHolder
