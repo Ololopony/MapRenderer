@@ -14,7 +14,7 @@ public class PlayerShovel : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (_mouse.leftButton.wasPressedThisFrame)
         {

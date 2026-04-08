@@ -35,7 +35,6 @@ public class GridFiller : MonoBehaviour
         _realGrid = new RealCell[_layout.GetMapWidth(), _layout.GetMapHight()];
 
         StartCoroutine(FillMap());
-        _treasureInstantiator.SetTreasureForCells(_cellTreasureHolders);
     }
 
     private IEnumerator FillMap()
@@ -91,7 +90,6 @@ public class GridFiller : MonoBehaviour
             if (potentialCells.Count < 1)
             {
                 _realGrid[x, y] = _allPossibleCells[0];
-                Debug.LogWarning("No compatable cells at point " + x + ", " + y);
             }
             else
             {
@@ -103,6 +101,7 @@ public class GridFiller : MonoBehaviour
             yield return new WaitForEndOfFrame();
             _toFill.RemoveAt(0);
         }
+        _treasureInstantiator.SetTreasureForCells(_cellTreasureHolders);
     }
 
     private void RemoveCellsByEdges(List<RealCell> potentialCells, Edge edge)
@@ -119,7 +118,6 @@ public class GridFiller : MonoBehaviour
 
     private void RemoveCellsByType(List<RealCell> potentialCells, CellType cellType)
     {
-        Debug.Log(cellType.ToString());
         for (int i = potentialCells.Count - 1; i >= 0; i--)
         {
             RealCell potentialCell = potentialCells[i];
